@@ -1,11 +1,11 @@
 var gulp 		= require('gulp');
 var pug 		= require('gulp-pug');
 var sass 		= require('gulp-sass');
-var prettUrl 	= require('gulp-pretty-url');
-var sourcemaps 	= require('gulp-sourcemaps');
+var prettUrl	= require('gulp-pretty-url');
+var sourcemaps	= require('gulp-sourcemaps');
 var browserify 	= require('browserify');
-var source 		= require('vinyl-source-stream');
-var buffer 		= require('vinyl-buffer');
+var source		= require('vinyl-source-stream');
+var buffer		= require('vinyl-buffer');
 var sourcemaps 	= require('gulp-sourcemaps');
 var sass 		= require('gulp-sass');
 var uglify 		= require('gulp-uglify');
@@ -14,22 +14,22 @@ var del			= require('del');
 
 
 gulp.task('templates', function() {
-  return gulp.src('./src/views/pages/**/*.pug')
-    .pipe(pug({
-			basedir: './src/views/',
-			pretty: true,
-			locals:{}
-		}))
-		.pipe(prettUrl())
-    .pipe(gulp.dest('build/'));
+	return gulp.src('./src/views/pages/**/*.pug')
+	.pipe(pug({
+		basedir: './src/views/',
+		pretty: true,
+		locals:{}
+	}))
+	.pipe(prettUrl())
+	.pipe(gulp.dest('build/'));
 });
 
 gulp.task('sass-dist', function() {
-  gulp.src('src/sass/**/*.scss')
-		.pipe(sourcemaps.init({loadMaps:true}))
-		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest('build/css/'))
+	gulp.src('src/sass/**/*.scss')
+	.pipe(sourcemaps.init({loadMaps:true}))
+	.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest('build/css/'))
 });
 
 gulp.task('sass-dev', function() {
@@ -62,7 +62,6 @@ gulp.task('scripts-dev', function() {
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('build/js/'))
 });
-
 
 gulp.task('build', ['templates', 'sass-dist', 'scripts-dist'], function(){
 
