@@ -1,15 +1,15 @@
-var gulp 				= require('gulp');
-var pug 				= require('gulp-pug');
-var sass 				= require('gulp-sass');
-var prettUrl 		= require('gulp-pretty-url');
-var sourcemaps 		= require('gulp-sourcemaps');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
-var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
-var del = require('del');
+var gulp 		= require('gulp');
+var pug 		= require('gulp-pug');
+var sass 		= require('gulp-sass');
+var prettUrl 	= require('gulp-pretty-url');
+var sourcemaps 	= require('gulp-sourcemaps');
+var browserify 	= require('browserify');
+var source 		= require('vinyl-source-stream');
+var buffer 		= require('vinyl-buffer');
+var sourcemaps 	= require('gulp-sourcemaps');
+var sass 		= require('gulp-sass');
+var uglify 		= require('gulp-uglify');
+var del			= require('del');
 
 
 
