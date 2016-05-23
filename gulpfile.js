@@ -10,7 +10,8 @@ var sourcemaps 	= require('gulp-sourcemaps');
 var sass 		= require('gulp-sass');
 var uglify 		= require('gulp-uglify');
 var del			= require('del');
-
+var browserSync = require('browser-sync');
+var reload      = browserSync.reload;
 
 
 gulp.task('templates', function() {
@@ -38,6 +39,7 @@ gulp.task('sass-dev', function() {
 		.pipe(sass().on('error', sass.logError))
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest('build/css/'))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('scripts-dist', function() {
@@ -63,6 +65,32 @@ gulp.task('scripts-dev', function() {
 		.pipe(gulp.dest('build/js/'))
 });
 
-gulp.task('build', ['templates', 'sass-dist', 'scripts-dist'], function(){
+gulp.task('clean', function(){
+	return del(['build/**/*']);
+});
 
+gulp.task('watch', ['templates', 'sass-dev', 'scripts-dev'], function(){
+	gulp.watch('src/views/**/*', ['templates']);
+	gulp.watch('src/sass/**/*', ['sass-dev']);
+	gulp.watch('src/scripts/**/*', ['scripts-dev']);
+
+});
+
+
+gulp.task('build', ['clean'], function(){
+	gulp.start('templates');
+	gulp.start('sass-dist');
+	gulp.start('scripts-dist');
+});
+
+
+// Static server
+gulp.task('serve', ['watch'], function() {
+    browserSync.init({
+        server: {
+            baseDir: "./build/"
+        }
+    });
+
+	gulp.watch("build/**/*.html").on("change", reload);
 });

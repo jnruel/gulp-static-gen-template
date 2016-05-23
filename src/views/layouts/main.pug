@@ -7,7 +7,8 @@ html(lang="en")
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(name='description', content=description)
-		title=pageTitle
+		title='Template Site | ' + pageTitle
+		link(rel='stylesheet', href='/css/main.css', type='text/css')
 
 	body
 
@@ -22,3 +23,4 @@ html(lang="en")
 
 			footer
 				p footer
+		script(src='/js/bundled.js', type='text/javascript')
